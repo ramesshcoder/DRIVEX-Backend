@@ -1,6 +1,6 @@
-using AutoMapper;
 using Drivex.DTOs.Cars;
 using Drivex.Services.Cars;
+using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Drivex.Controllers;
@@ -10,8 +10,7 @@ namespace Drivex.Controllers;
 public class CarsController : ControllerBase
 {
     private readonly ICarService _carService;
-    public readonly IMapper _mapster;
-
+    private readonly IMapper _mapster;
     public CarsController(ICarService carService,
         IMapper mapster)
     {

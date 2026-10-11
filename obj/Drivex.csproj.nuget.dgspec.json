@@ -52,13 +52,17 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "dependencies": {
-            "AutoMapper": {
-              "target": "Package",
-              "version": "[16.2.0, )"
-            },
             "BCrypt.Net-Next": {
               "target": "Package",
               "version": "[4.2.0, )"
+            },
+            "Mapster": {
+              "target": "Package",
+              "version": "[10.0.13, )"
+            },
+            "Mapster.DependencyInjection": {
+              "target": "Package",
+              "version": "[10.0.13, )"
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
@@ -66,7 +70,15 @@
             },
             "Microsoft.Data.SqlClient": {
               "target": "Package",
-              "version": "[7.0.2, )"
+              "version": "[7.1.1, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[10.0.12, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[10.0.12, )"
             }
           },
           "imports": [

@@ -1,12 +1,9 @@
-﻿namespace Drivex.Domain.Cars;
+namespace Drivex.Domain.Cars;
 
+// DTOs/CarDto.cs
 public class Car
 {
     public int Id { get; set; }
-    public int BrandId { get; set; }
-    public int CategoryId { get; set; }
-    public string Brand { get; set; } = string.Empty;
-    public string Category { get; set; } = string.Empty;
     public string Model { get; set; } = string.Empty;
     public int Year { get; set; }
     public decimal PricePerDay { get; set; }
@@ -15,4 +12,13 @@ public class Car
     public int Seats { get; set; }
     public string? ImageUrl { get; set; }
     public bool IsAvailable { get; set; }
+
+    // Brand
+    public int BrandId { get; set; }
+
+    // Category
+    public int CategoryId { get; set; }
+
+    public Brand Brand { get; set; } = null!;
+    public Category Category { get; set; } = null!;
 }

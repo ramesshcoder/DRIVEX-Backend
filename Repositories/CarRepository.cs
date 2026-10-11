@@ -1,47 +1,27 @@
+using Drivex.Data;
 using Drivex.Domain.Cars;
-using Drivex.Repositories.Base;
-using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 
-namespace Drivex.Repositories.Cars;
+namespace Drivex.Repositories;
 
-public class CarRepository : BaseSqlRepository, ICarRepository
+public class CarRepository : ICarRepository
 {
-    public CarRepository(IConfiguration configuration)
-        : base(configuration)
+    private readonly DBContext _context;
+
+    public CarRepository(DBContext context)
     {
+        _context = context;
     }
 
-    public Task<List<Car>> GetAllCarsAsync(CancellationToken cancellationToken = default)
+    public async Task<List<Car>> GetAllCarsAsync(CancellationToken cancellationToken = default)
     {
-        return QueryStoredProcedureAsync("sp_GetAllCars", MapCar, cancellationToken: cancellationToken);
+        return await _context.Cars.AsNoTracking().Include(c => c.Brand)
+            .Include(c => c.Category).ToListAsync(cancellationToken);
     }
 
-    public Task<Car?> GetCarByIdAsync(int id, CancellationToken cancellationToken = default)
+    public async Task<Car?> GetCarByIdAsync(int id, CancellationToken cancellationToken = default)
     {
-        return QueryStoredProcedureSingleAsync(
-            "sp_GetCarById",
-            MapCar,
-            command => command.Parameters.Add(new SqlParameter("@Id", id)),
-            cancellationToken);
-    }
-
-    private static Car MapCar(SqlDataReader reader)
-    {
-        return new Car
-        {
-            Id = GetRequired<int>(reader, "Id"),
-            BrandId = GetRequired<int>(reader, "BrandId"),
-            CategoryId = GetRequired<int>(reader, "CategoryId"),
-            Brand = GetRequired<string>(reader, "Brand"),
-            Category = GetRequired<string>(reader, "Category"),
-            Model = GetRequired<string>(reader, "Model"),
-            Year = GetRequired<int>(reader, "Year"),
-            PricePerDay = GetRequired<decimal>(reader, "PricePerDay"),
-            Transmission = GetRequired<string>(reader, "Transmission"),
-            FuelType = GetRequired<string>(reader, "FuelType"),
-            Seats = GetRequired<int>(reader, "Seats"),
-            ImageUrl = GetOptional<string>(reader, "ImageUrl"),
-            IsAvailable = GetRequired<bool>(reader, "IsAvailable")
-        };
+        return await _context.Cars.AsNoTracking().Include(c => c.Brand)
+            .Include(c => c.Category).FirstOrDefaultAsync(c => c.Id == id, cancellationToken);
     }
 }

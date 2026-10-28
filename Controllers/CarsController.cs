@@ -22,7 +22,7 @@ public class CarsController : ControllerBase
     public async Task<ActionResult<List<CarDto>>> GetAll(CancellationToken cancellationToken)
     {
         var cars = await _carService.GetAllCarsAsync(cancellationToken);
-        return Ok(_mapster.Map<List<CarDto>>(cars));
+            return Ok(_mapster.Map<List<CarDto>>(cars));
     }
 
     [HttpGet("{id:int}")]

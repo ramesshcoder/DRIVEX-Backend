@@ -15,9 +15,9 @@ public class CarRepository : ICarRepository
 
     public async Task<List<Car>> GetAllCarsAsync(CancellationToken cancellationToken = default)
     {
-        return await _context.Cars.AsNoTracking().Include(c => c.Brand)
-            .Include(c => c.Category).ToListAsync(cancellationToken);
-    }
+           return await _context.Cars.AsNoTracking().Include(c => c.Brand)
+               .Include(c => c.Category).ToListAsync(cancellationToken);
+    }   
 
     public async Task<Car?> GetCarByIdAsync(int id, CancellationToken cancellationToken = default)
     {

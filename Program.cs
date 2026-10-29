@@ -10,8 +10,8 @@ builder.Services.AddDbContext<DBContext>(options => options.UseSqlServer(builder
 builder.Services.AddControllers();
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("Frontend", policy =>
-        policy.WithOrigins("http://localhost:4200", "https://your-frontend-domain.com"
+    options.AddPolicy("DriveXPolicy", policy =>
+        policy.WithOrigins("http://localhost:4200", "https://drivexre.netlify.app"
 ).AllowAnyHeader().AllowAnyMethod());
 });
 
@@ -28,7 +28,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseCors("Frontend");
+app.UseCors("DriveXPolicy");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();

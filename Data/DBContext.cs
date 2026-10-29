@@ -1,4 +1,5 @@
 using Drivex.Domain.Cars;
+using Drivex.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 
 namespace Drivex.Data
@@ -12,5 +13,6 @@ namespace Drivex.Data
         public DbSet<Car> Cars { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

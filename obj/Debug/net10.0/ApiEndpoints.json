@@ -1,5 +1,31 @@
 [
   {
+    "ContainingType": "Drivex.Controllers.AuthController",
+    "Method": "Signup",
+    "RelativePath": "api/auth/sign-up",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "signupRequest",
+        "Type": "Drivex.DTOs.SignupRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "Drivex.Controllers.CarsController",
     "Method": "GetAll",
     "RelativePath": "api/cars",

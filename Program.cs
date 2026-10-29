@@ -1,5 +1,6 @@
 using Drivex.Data;
 using Drivex.Repositories;
+using Drivex.Service;
 using Drivex.Services.Cars;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +19,9 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddScoped<ICarService, CarService>();
 builder.Services.AddScoped<ICarRepository, CarRepository>();
+    builder.Services.AddScoped<IAuthRepository, AuthRepository>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddMapster();
 var app = builder.Build();

@@ -12,10 +12,10 @@ namespace Drivex.Controllers
     public class AuthController : ControllerBase
     {
 
-        private readonly AuthService _authService;
+        private readonly IAuthService _authService;
         private readonly IMapper _mapper;
-       public AuthController(AuthService authService,
-            IMapper mapper)
+        public AuthController(IAuthService authService,
+             IMapper mapper)
         {
             _authService = authService;
             _mapper = mapper;

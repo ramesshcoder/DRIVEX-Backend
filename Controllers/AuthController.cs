@@ -1,8 +1,8 @@
+using Drivex.Domain.Users;
 using Drivex.DTOs;
 using Drivex.Service;
 using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualBasic;
 
 namespace Drivex.Controllers
 
@@ -25,8 +25,20 @@ namespace Drivex.Controllers
         {
 
             var result = await _authService.Signup(signupRequest.Name, signupRequest.Password,
-                signupRequest.Email, signupRequest.Email, signupRequest.Role);
+                signupRequest.Email, signupRequest.Phone, signupRequest.Role, signupRequest.ConfirmPassword);
+            return Ok(result);
+        }
+
+        [HttpPost("login")]
+        public async Task<ActionResult<int>> Login(LoginRequestDto request)
+        {
+            if (request == null)
+            {
+                throw new ArgumentNullException(nameof(request));
+            }
+            var result = await _authService.LoginAsync(_mapper.Map<LoginRequest>(request));
             return Ok(result);
         }
     }
 }
+
